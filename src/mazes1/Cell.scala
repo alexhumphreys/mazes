@@ -3,7 +3,7 @@ package mazes1
 class Cell(rowc: Int, columnc: Int) {
   var row: Int = rowc
   var column: Int = columnc
-  var north, south, east, west: Cell = null
+  var north, south, east, west: Option[Cell] = None
   
   val links = scala.collection.mutable.Map[Cell,Boolean]()
   
@@ -26,4 +26,7 @@ class Cell(rowc: Int, columnc: Int) {
   def isLinked(cell: Cell) : Boolean = {
     links.contains(cell)
   }
+  
+  override def toString(): String = "(" + row + ", " + column + ")";
+  
 }
