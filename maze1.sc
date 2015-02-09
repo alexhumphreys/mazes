@@ -2,11 +2,12 @@ package mazes1
 
 object maze1 {
   
-  val grid = new Grid(3, 3)                       //> grid  : mazes1.Grid = +---+---+---+
-                                                  //| |         /n++++/n|         /n++++/n|         /n++++/n
+  val grid = new Grid(3, 3)                       //> grid  : mazes1.Grid = +---+---+---+()|         ()++++()|         ()++++()|   
+                                                  //|       ()++++()
  	
- 	BinaryTreeMaze.on(grid)                   //> res0: mazes1.Grid = +---+---+---+
-                                                  //| |            /n++++/n|               /n++   ++/n|            /n++++/n
+  var x = BinaryTreeMaze.on(grid)                 //> x  : mazes1.Grid = +---+---+---+()|               ()+++   +()|               
+                                                  //| ()++   ++()|            ()++++()
 
- 	
+	x.toString()                              //> res0: String = +---+---+---+()|               ()+++   +()|               ()+
+                                                  //| +   ++()|            ()++++()
 }

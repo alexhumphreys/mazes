@@ -50,7 +50,7 @@ class Grid(rowsc: Int, columnsc: Int) {
   }
   
   override def toString(): String = {
-    var output = "+" + "---+" * columns + "\n"
+    var output = "+" + "---+" * columns + newline
     
     grid.foreach { row => 
       var top = "|"
@@ -63,7 +63,7 @@ class Grid(rowsc: Int, columnsc: Int) {
         if (cell.east.isDefined) {
           if (cell.isLinked(cell.east.get)) eastBoundary = "   " else "|"
         }
-        top += (body + eastBoundary)
+        top += body + eastBoundary
         
         var southBoundary = ""
         if (cell.south.isDefined) {
@@ -72,10 +72,14 @@ class Grid(rowsc: Int, columnsc: Int) {
         bottom += (southBoundary + "+")
       }
       
-      output += (top + "/n")
-      output += (bottom + "/n")
+      output += top + newline
+      output += bottom + newline
     }
     
     output
+  }
+  
+  def newline {
+    sys.props("line.separator")
   }
 }
