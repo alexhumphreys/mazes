@@ -9,7 +9,7 @@ class Draw {
   def toPng(grid: Grid) : Boolean = {
 
 	  // Size of image
-    val cellSize = 10
+    val cellSize = 100
 	  val size = (grid.rows * cellSize, grid.columns * cellSize)
 
 	  // create an image
