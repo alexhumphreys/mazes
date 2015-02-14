@@ -1,24 +1,20 @@
 package mazes1
 
 class Grid(rowsc: Int, columnsc: Int) {
-  var rows: Int = rowsc
-  var columns: Int = columnsc
+  val rows: Int = rowsc
+  val columns: Int = columnsc
 
-  var grid: Array[Array[Cell]] = prepareGrid
+  val grid: Array[Array[Cell]] = prepareGrid
   configureCells
   
   def prepareGrid : Array[Array[Cell]] = {
-    var x = new Array[Array[Cell]](rows)
-  
-    x.indices.foreach { row =>
-      var y = new Array[Cell](columns)
-      y.indices.foreach { column =>
-        var cell = new Cell(row, column)
-        y(column) = cell
-      }
-      x(row) = y
+    val grid2d = Array.ofDim[Cell](rows, columns)
+    val allCells = for(i <- (0 until (rows)); j <- 0 until (columns)) yield new Cell(i, j)
+    
+    allCells foreach { cell =>
+      grid2d(cell.row)(cell.column) = cell
     }
-    x
+    grid2d
   }
   
   def configureCells {
@@ -29,7 +25,7 @@ class Grid(rowsc: Int, columnsc: Int) {
       if (row != 0)           cell.north = Option(grid(row - 1)(col))
       if (row != rows - 1)    cell.south = Option(grid(row + 1)(col))
       if (col != 0)           cell.west =  Option(grid(row)(col - 1))
-      if (col != columns - 1) cell.east = Option(grid(row)(col + 1)) 
+      if (col != columns - 1) cell.east = Option(grid(row)(col + 1))
     }
   }
   
@@ -39,10 +35,7 @@ class Grid(rowsc: Int, columnsc: Int) {
   
   def randomCell : Cell = {
     val r = scala.util.Random
-    val row = r.nextInt(rows)
-    val col = r.nextInt(grid(row).length)
-    
-    grid(row)(col)
+    eachCell(r.nextInt(eachCell.length))
   }
   
   def size : Int = {

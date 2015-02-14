@@ -1,8 +1,8 @@
 package mazes1
 
 class Cell(rowc: Int, columnc: Int) {
-  var row: Int = rowc
-  var column: Int = columnc
+  val row: Int = rowc
+  val column: Int = columnc
   var north, south, east, west: Option[Cell] = None
   
   val links = scala.collection.mutable.Map[Cell,Boolean]()
