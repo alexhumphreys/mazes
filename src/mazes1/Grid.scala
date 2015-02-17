@@ -41,38 +41,34 @@ class Grid(rowsc: Int, columnsc: Int) {
   def size : Int = {
     rows * columns
   }
+
+  import Direction._
   
-  override def toString(): String = {
-    var output = "+" + "---+" * columns + newline
-    
-    grid.foreach { row => 
-      var top = "|"
-      var bottom = "+"
-      
-      row.foreach { cell =>
-        var body = "   " // <-- that's THREE (3) spaces!
-        var eastBoundary = ""
-        
-        if (cell.east.isDefined) {
-          if (cell.isLinked(cell.east.get)) eastBoundary = "   " else "|"
-        }
-        top += body + eastBoundary
-        
-        var southBoundary = ""
-        if (cell.south.isDefined) {
-          if (cell.isLinked(cell.south.get)) southBoundary = "   " else "---"
-        }
-        bottom += (southBoundary + "+")
-      }
-      
-      output += top + newline
-      output += bottom + newline
+  def northOf(cell: Cell) : Option[Cell] = {
+    Option(grid(cell.row - 1)(cell.column))
+  }
+  def southOf(cell: Cell) : Option[Cell] = {
+    Option(grid(cell.row + 1)(cell.column))
+  }
+  def eastOf(cell: Cell) : Option[Cell] = {
+    Option(grid(cell.row)(cell.column -1))
+  }
+  def westOf(cell: Cell) : Option[Cell] = {
+    Option(grid(cell.row)(cell.column + 1))
+  }
+  def fetchCellByDirection(cell: Cell, dir : Direction) : Option[Cell] = {
+    val xy = dir match {
+      case North => (-1, 0)
+      case South => (1, 0)
+      case East => (0, -1)
+      case _ => (0, 1)
     }
     
-    output
-  }
-  
-  def newline {
-    sys.props("line.separator")
+    try { 
+      Option(grid(cell.row + xy._1)(cell.column + xy._2))
+    } catch {
+      case e1: ArrayIndexOutOfBoundsException =>
+        None
+    }
   }
 }
