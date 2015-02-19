@@ -6,6 +6,24 @@ import java.awt.geom._
 
 class Draw {
   
+  val DirectionMap = Map(
+    1 -> "\u2575",
+    2 -> "\u2576",
+    3 -> "\u2514",
+    4 -> "\u2577",
+    5 -> "\u2502",
+    6 -> "\u250c",
+    7 -> "\u251c",
+    8 -> "\u2574",
+    9 -> "\u2518",
+    10 -> "\u2500",
+    11 -> "\u2534",
+    12 -> "\u2510",
+    13 -> "\u2524",
+    14 -> "\u252c",
+    15 -> "\u253c"
+  )
+  
   def toPng(grid: Grid) : Boolean = {
 
 	  // Size of image
@@ -50,8 +68,20 @@ class Draw {
     } 
 
 			  // write image to a file
-			  javax.imageio.ImageIO.write(canvas, "png", new java.io.File("/Users/alex/Documents/workspace/mazes1drawing.png"))
+			  javax.imageio.ImageIO.write(canvas, "png", new java.io.File("/Users/alex/Documents/workspace/mazes2drawing.png"))
 
   }
+  
+  def toBits(grid: Grid) {
+      grid.grid.foreach { row =>
+        row.map( cell => print(DirectionMap(cell.bitLinks)) )
+        println
+      }
+      grid.grid.foreach { row =>
+        row.map( cell => print(cell.bitLinks) )
+        println
+      }
+   }
+  
 
 }

@@ -4,7 +4,7 @@ object BinaryTreeMaze {
   
   def on(grid: Grid) : Grid = {
     grid.eachCell foreach { cell =>     
-      val neighbors = List(cell.north, cell.east).flatten    
+      val neighbors = List(grid.northOf(cell), grid.eastOf(cell)).flatten    
       if (neighbors.length > 0) cell.link(getRandomCell(neighbors))
     }
     grid

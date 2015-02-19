@@ -4,3 +4,7 @@ tasts
 tasks
 package
 console
+compile
+run
+help
+console

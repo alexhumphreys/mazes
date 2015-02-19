@@ -45,16 +45,16 @@ class Grid(rowsc: Int, columnsc: Int) {
   import Direction._
   
   def northOf(cell: Cell) : Option[Cell] = {
-    Option(grid(cell.row - 1)(cell.column))
+    fetchCellByDirection(cell, North)
   }
   def southOf(cell: Cell) : Option[Cell] = {
-    Option(grid(cell.row + 1)(cell.column))
+    fetchCellByDirection(cell, South)
   }
   def eastOf(cell: Cell) : Option[Cell] = {
-    Option(grid(cell.row)(cell.column -1))
+    fetchCellByDirection(cell, East)
   }
   def westOf(cell: Cell) : Option[Cell] = {
-    Option(grid(cell.row)(cell.column + 1))
+    fetchCellByDirection(cell, West)
   }
   def fetchCellByDirection(cell: Cell, dir : Direction) : Option[Cell] = {
     val xy = dir match {
