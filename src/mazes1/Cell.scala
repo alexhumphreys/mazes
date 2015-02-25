@@ -3,7 +3,7 @@ package mazes1
 class Cell(rowc: Int, columnc: Int) {
   val row: Int = rowc
   val column: Int = columnc
-  var north, south, east, west: Option[Cell] = None
+  //var north, south, east, west: Option[Cell] = None
   
   val links = scala.collection.mutable.ArrayBuffer[Cell]()
   

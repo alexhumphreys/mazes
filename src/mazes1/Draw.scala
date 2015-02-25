@@ -53,17 +53,20 @@ class Draw {
       val x2 = (cell.column + 1) * cellSize 
       val y2 = (cell.row + 1) * cellSize
       
-      if (!cell.north.isDefined) g.draw(new Line2D.Double(x1, y1, x2, y1))
       
-      if (!cell.west.isDefined) g.draw(new Line2D.Double(x1, y1, x1, y2))
       
-      if (cell.east.isDefined && !cell.isLinked(cell.east.get)) g.draw(new Line2D.Double(x2, y1, x2, y2)) 
+      if (!grid.northOf(cell).isDefined) g.draw(new Line2D.Double(x1, y1, x2, y1))
       
-      if (cell.south.isDefined && !cell.isLinked(cell.south.get)) g.draw(new Line2D.Double(x1, y2, x2, y2)) 
+      if (!grid.westOf(cell).isDefined) g.draw(new Line2D.Double(x1, y1, x1, y2))
       
-      if (!cell.south.isDefined) g.draw(new Line2D.Double(x1, y2, x2, y2))
+      if (grid.eastOf(cell).isDefined && !cell.isLinked(grid.eastOf(cell).get)) g.draw(new Line2D.Double(x2, y1, x2, y2)) 
       
-      if (!cell.east.isDefined) g.draw(new Line2D.Double(x2, y1, x2, y2))
+      if (grid.southOf(cell).isDefined && !cell.isLinked(grid.southOf(cell).get)) g.draw(new Line2D.Double(x1, y2, x2, y2)) 
+      
+      if (!grid.southOf(cell).isDefined) g.draw(new Line2D.Double(x1, y2, x2, y2))
+      
+      println(!grid.eastOf(cell).isDefined)
+      if (!grid.eastOf(cell).isDefined) g.draw(new Line2D.Double(x2, y1, x2, y2))
       
     } 
 

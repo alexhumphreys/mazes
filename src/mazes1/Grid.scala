@@ -5,7 +5,7 @@ class Grid(rowsc: Int, columnsc: Int) {
   val columns: Int = columnsc
 
   val grid: Array[Array[Cell]] = prepareGrid
-  configureCells
+  //configureCells
   
   def prepareGrid : Array[Array[Cell]] = {
     val grid2d = Array.ofDim[Cell](rows, columns)
@@ -22,10 +22,10 @@ class Grid(rowsc: Int, columnsc: Int) {
       val row = cell.row
       val col = cell.column
       
-      if (row != 0)           cell.north = Option(grid(row - 1)(col))
-      if (row != rows - 1)    cell.south = Option(grid(row + 1)(col))
-      if (col != 0)           cell.west =  Option(grid(row)(col - 1))
-      if (col != columns - 1) cell.east = Option(grid(row)(col + 1))
+      //if (row != 0)           cell.north = Option(grid(row - 1)(col))
+      //if (row != rows - 1)    cell.south = Option(grid(row + 1)(col))
+      //if (col != 0)           cell.west =  Option(grid(row)(col - 1))
+      //if (col != columns - 1) cell.east = Option(grid(row)(col + 1))
     }
   }
   
@@ -60,8 +60,8 @@ class Grid(rowsc: Int, columnsc: Int) {
     val xy = dir match {
       case North => (-1, 0)
       case South => (1, 0)
-      case East => (0, -1)
-      case _ => (0, 1)
+      case East => (0, 1)
+      case _ => (0, -1)
     }
     
     try { 
